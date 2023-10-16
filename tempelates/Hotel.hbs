@@ -4,21 +4,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Room Listings</title>
+    <title>Hotel KGP</title>
     <style>
-        /* ... Your existing styles ... */
+        *,
+        *::after,
+        *::before {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        .html {
+            font-size: 30%;
+        }
+
+        .navbar input[type="checkbox"],
+        .navbar .hamburger-lines {
+            display: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            margin: auto;
+        }
+
+        .navbar {
+            box-shadow: 0px 5px 10px 0px #aaa;
+            position: relative;
+            width: 100%;
+            background: #fff;
+            color: #000;
+            opacity: 0.85;
+            z-index: 100;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            height: 50px;
+            align-items: center;
+        }
+
+        .menu-items {
+            order: 2;
+            display: flex;
+        }
+
+        .logo {
+            order: 1;
+            font-size: 2.3rem;
+        }
+
+        .menu-items li {
+            list-style: none;
+            margin-left: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .navbar a {
+            color: #444;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .navbar a:hover {
+            color: #117964;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                opacity: 0.95;
+            }
+
+            .navbar-container input[type="checkbox"],
+            .navbar-container .hamburger-lines {
+                display: block;
+            }
+
+            .navbar-container {
+                display: block;
+                position: relative;
+                height: 64px;
+            }
+
+            .navbar-container input[type="checkbox"] {
+                position: absolute;
+                display: block;
+                height: 32px;
+                width: 30px;
+                top: 20px;
+                left: 20px;
+                z-index: 5;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+            .navbar-container .hamburger-lines {
+                display: block;
+                height: 28px;
+                width: 35px;
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                z-index: 2;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .navbar-container .hamburger-lines .line {
+                display: block;
+                height: 4px;
+                width: 100%;
+                border-radius: 10px;
+                background: #333;
+            }
+
+            .navbar-container .hamburger-lines .line1 {
+                transform-origin: 0% 0%;
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .navbar-container .hamburger-lines .line2 {
+                transition: transform 0.2s ease-in-out;
+            }
+
+            .navbar-container .hamburger-lines .line3 {
+                transform-origin: 0% 100%;
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .navbar .menu-items {
+                padding-top: 100px;
+                background: #fff;
+                height: 100vh;
+                max-width: 300px;
+                transform: translate(-150%);
+                display: flex;
+                flex-direction: column;
+                margin-left: -40px;
+                padding-left: 40px;
+                transition: transform 0.5s ease-in-out;
+                box-shadow: 5px 0px 10px 0px #aaa;
+                overflow: scroll;
+            }
+
+            .navbar .menu-items li {
+                margin-bottom: 1.8rem;
+                font-size: 1.1rem;
+                font-weight: 500;
+            }
+
+            .logo {
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 2.5rem;
+            }
+
+            .navbar-container input[type="checkbox"]:checked~.menu-items {
+                transform: translateX(0);
+            }
+
+            .navbar-container input[type="checkbox"]:checked~.hamburger-lines .line1 {
+                transform: rotate(45deg);
+            }
+
+            .navbar-container input[type="checkbox"]:checked~.hamburger-lines .line2 {
+                transform: scaleY(0);
+            }
+
+            .navbar-container input[type="checkbox"]:checked~.hamburger-lines .line3 {
+                transform: rotate(-45deg);
+            }
+
+        }
+
+        @media (max-width: 500px) {
+            .navbar-container input[type="checkbox"]:checked~.logo {
+                display: none;
+            }
+        }
+
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            /* Center the content horizontally */
-            align-items: center;
-            /* Center the content vertically */
-            min-height: 100vh;
-            /* Ensure full height of the viewport */
         }
 
         .card {
@@ -52,11 +226,12 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             padding: 20px;
+            justify-items: center;
         }
 
         .booked {
             background-color: #f8d7da;
-            /* Light red for booked rooms */
+
         }
 
         .bookings-container {
@@ -72,6 +247,8 @@
             margin-bottom: 10px;
             color: black;
         }
+
+
 
         @media screen and (max-width: 1200px) {
             .grid-container {
@@ -97,14 +274,33 @@
 
 <body>
 
+
+
+
+
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <input type="checkbox" name="" id="">
+            <div class="hamburger-lines">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+            </div>
+            <ul class="menu-items">
+                <form action="/logout" method="post">
+                    <li><a href="/logout">Logout</a></li>
+                </form>
+
+            </ul>
+            <h1 class="logo">Hotel KGP</h1>
+        </div>
+    </nav>
+
+
     <div class="card-container" id="app">
-        <!-- Cards will be dynamically generated here -->
+
     </div>
 
-
-
-    {{!-- <div class="bookings-container" id="bookings">
-    </div> --}}
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -173,8 +369,6 @@
 
 
 
-
-                // Add more room objects as needed
             ];
 
             const appContainer = document.getElementById('app');
@@ -183,7 +377,7 @@
             const bookedRooms = [];
 
             const handleBookButtonClick = (index) => {
-                // Toggle the booked status
+
                 roomsData[index].booked = !roomsData[index].booked;
                 if (roomsData[index].booked) {
                     window.location.href = '/bookings';
@@ -213,6 +407,8 @@
                     const image = document.createElement('img');
                     image.src = room.imageUrl;
                     card.appendChild(image);
+                    image.style.width = '280px';
+                    image.style.height = '230px';
 
                     const title = document.createElement('h2');
                     title.textContent = room.class;
@@ -233,6 +429,14 @@
                     const bookButton = document.createElement('button');
                     bookButton.textContent = room.booked ? 'Booked' : 'Book';
                     bookButton.addEventListener('click', () => handleBookButtonClick(index));
+
+                    bookButton.style.backgroundColor = '#007BFF';
+                    bookButton.style.color = '#FFFFFF';
+                    bookButton.style.padding = '8px 16px';
+                    bookButton.style.border = 'none';
+                    bookButton.style.borderRadius = '4px';
+                    bookButton.style.cursor = 'pointer';
+
                     card.appendChild(bookButton);
 
                     gridContainer.appendChild(card);
@@ -241,14 +445,15 @@
                 appContainer.appendChild(gridContainer);
             };
 
+
             const renderBookings = () => {
-                // Clear existing bookings
+
                 bookingsContainer.innerHTML = '';
 
-                // Filter booked rooms
+
                 const booked = roomsData.filter(room => room.booked);
 
-                // Display booked rooms in the bookings container
+
                 booked.forEach(room => {
                     const bookedCard = document.createElement('div');
                     bookedCard.classList.add('card', 'booked');
@@ -277,10 +482,43 @@
                 });
             };
 
-            // Initial rendering
             renderRooms();
             renderBookings();
         });
+
+
+        const showNotification = (message) => {
+            if (!("Notification" in window)) {
+                console.warn("This browser does not support desktop notifications");
+                return;
+            }
+
+            if (Notification.permission === "granted") {
+                const notification = new Notification("Hotel KGP", {
+                    body: message,
+                    icon: "path/to/icon.png",
+                });
+
+
+                setTimeout(() => {
+                    notification.close();
+                }, 5000);
+            } else if (Notification.permission !== "denied") {
+
+                Notification.requestPermission().then((permission) => {
+                    if (permission === "granted") {
+
+                        showNotification(message);
+                    }
+                });
+            }
+        };
+        const isLoginSuccessful = true;
+
+        if (isLoginSuccessful) {
+            // Trigger a notification for a successful login
+            showNotification("Flat 50% off on Deluxe!");
+        }
     </script>
 
 </body>

@@ -33,6 +33,9 @@ app.get('/', (req, res) => {
 app.get('/hotel', (req, res) => {
     res.render('hotel')
 })
+app.get('/logout', (req, res) => {
+    res.render('login')
+})
 
 app.post('/signup', async (req, res) => {
 
