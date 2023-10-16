@@ -1,0 +1,60 @@
+{
+    "rooms": [
+        {
+            "photo": "https://source.unsplash.com/800x600/?hotel-room",
+            "availability": "Available",
+            "roomClass": "Standard Room",
+            "price": "$100 per night",
+            "description": "A comfortable standard room with basic amenities."
+        },
+        {
+            "photo": "https://source.unsplash.com/800x600/?suite",
+            "availability": "Available",
+            "roomClass": "Suite",
+            "price": "$200 per night",
+            "description": "An elegant suite with a separate living area and luxurious furnishings."
+        },
+        {
+            "photo": "https://source.unsplash.com/800x600/?deluxe-room",
+            "availability": "Sold Out",
+            "roomClass": "Deluxe Room",
+            "price": "$150 per night",
+            "description": "A spacious deluxe room with a beautiful view and additional amenities."
+        },
+        {
+            "photo": "https://source.unsplash.com/800x600/?penthouse",
+            "availability": "Available",
+            "roomClass": "Penthouse",
+            "price": "$500 per night",
+            "description": "A luxurious penthouse with panoramic views and top-notch facilities."
+        },
+        {
+            "photo": "https://source.unsplash.com/800x600/?family-room",
+            "availability": "Available",
+            "roomClass": "Family Room",
+            "price": "$180 per night",
+            "description": "A family-friendly room with extra space and kid-friendly features."
+        },
+        {
+            "photo": "https://source.unsplash.com/800x600/?ocean-view",
+            "availability": "Sold Out",
+            "roomClass": "Ocean View Room",
+            "price": "$250 per night",
+            "description": "A room with a stunning ocean view and premium amenities."
+        },
+        {
+            "photo": "https://source.unsplash.com/800x600/?executive-suite",
+            "availability": "Available",
+            "roomClass": "Executive Suite",
+            "price": "$300 per night",
+            "description": "An executive suite with a private workspace and high-end comforts."
+        },
+        {
+            "photo": "https://source.unsplash.com/800x600/?cabin",
+            "availability": "Available",
+            "roomClass": "Cabin",
+            "price": "$120 per night",
+            "description": "A cozy cabin with rustic charm and close proximity to nature."
+        }
+    ]
+}

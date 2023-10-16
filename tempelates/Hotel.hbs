@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Listings</title>
+    <style>
+        /* ... Your existing styles ... */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            /* Center the content horizontally */
+            align-items: center;
+            /* Center the content vertically */
+            min-height: 100vh;
+            /* Ensure full height of the viewport */
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 10px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .card h2 {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        .card p {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .booked {
+            background-color: #f8d7da;
+            /* Light red for booked rooms */
+        }
+
+        .bookings-container {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .bookings-container h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: black;
+        }
+
+        @media screen and (max-width: 1200px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .bookings-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+
+            .bookings-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card-container" id="app">
+        <!-- Cards will be dynamically generated here -->
+    </div>
+
+
+
+    {{!-- <div class="bookings-container" id="bookings">
+    </div> --}}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const roomsData = [
+                {
+                    imageUrl: 'https://source.unsplash.com/400x300/?room',
+                    class: 'Standard',
+                    availability: 'Available Now',
+                    price: '$100',
+                    description: 'A cozy standard room with all the essential amenities.',
+                },
+                {
+                    imageUrl: "https://source.unsplash.com/400x300/?suite",
+                    class: "Suite",
+                    availability: "Available Now",
+                    price: "$200",
+                    description: "A luxurious suite with a breathtaking view and premium amenities."
+                },
+                {
+                    imageUrl: "https://source.unsplash.com/400x300/?standard-room",
+                    class: "Standard",
+                    availability: "Available Soon",
+                    price: "$90",
+                    description: "A comfortable standard room, perfect for a relaxing stay."
+                },
+                {
+                    imageUrl: "https://source.unsplash.com/400x300/?deluxe-room",
+                    class: "Deluxe",
+                    availability: "Limited Availability",
+                    price: "$150",
+                    description: "A spacious deluxe room with modern decor and extra amenities."
+                },
+                {
+                    imageUrl: "https://source.unsplash.com/400x300/?family-suite",
+                    class: "Family Suite",
+                    availability: "Booked",
+                    price: "$250",
+                    description: "A family suite with separate rooms and a cozy common area."
+                },
+                {
+                    imageUrl: "https://source.unsplash.com/400x300/?budget-room",
+                    class: "Budget",
+                    availability: "Available Now",
+                    price: "$70",
+                    description: "An economical choice for those on a budget, with essential amenities."
+                },
+                {
+                    imageUrl: "https://source.unsplash.com/400x300/?executive-suite",
+                    class: "Executive Suite",
+                    availability: "Available Now",
+                    price: "$180",
+                    description: "An executive suite with a private office space and luxurious furnishings."
+                },
+                {
+                    imageUrl: "https://source.unsplash.com/400x300/?ocean-view",
+                    class: "Ocean View",
+                    availability: "Available Now",
+                    price: "$120",
+                    description: "A room with a stunning ocean view and balcony for a relaxing experience."
+                },
+
+
+
+
+
+
+
+
+
+                // Add more room objects as needed
+            ];
+
+            const appContainer = document.getElementById('app');
+            const bookingsContainer = document.getElementById('bookings');
+
+            const bookedRooms = [];
+
+            const handleBookButtonClick = (index) => {
+                // Toggle the booked status
+                roomsData[index].booked = !roomsData[index].booked;
+                if (roomsData[index].booked) {
+                    window.location.href = '/bookings';
+                }
+
+                // Update the UI
+                renderRooms();
+                renderBookings();
+            };
+
+            const renderRooms = () => {
+                // Clear existing cards
+                appContainer.innerHTML = '';
+
+                // Create a grid container
+                const gridContainer = document.createElement('div');
+                gridContainer.classList.add('grid-container');
+
+                // Append each card to the grid container
+                roomsData.forEach((room, index) => {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+                    if (room.booked) {
+                        card.classList.add('booked');
+                    }
+
+                    const image = document.createElement('img');
+                    image.src = room.imageUrl;
+                    card.appendChild(image);
+
+                    const title = document.createElement('h2');
+                    title.textContent = room.class;
+                    card.appendChild(title);
+
+                    const availability = document.createElement('p');
+                    availability.textContent = `Availability: ${room.availability}`;
+                    card.appendChild(availability);
+
+                    const price = document.createElement('p');
+                    price.textContent = `Price: ${room.price}`;
+                    card.appendChild(price);
+
+                    const desc = document.createElement('p');
+                    desc.textContent = room.description;
+                    card.appendChild(desc);
+
+                    const bookButton = document.createElement('button');
+                    bookButton.textContent = room.booked ? 'Booked' : 'Book';
+                    bookButton.addEventListener('click', () => handleBookButtonClick(index));
+                    card.appendChild(bookButton);
+
+                    gridContainer.appendChild(card);
+                });
+
+                appContainer.appendChild(gridContainer);
+            };
+
+            const renderBookings = () => {
+                // Clear existing bookings
+                bookingsContainer.innerHTML = '';
+
+                // Filter booked rooms
+                const booked = roomsData.filter(room => room.booked);
+
+                // Display booked rooms in the bookings container
+                booked.forEach(room => {
+                    const bookedCard = document.createElement('div');
+                    bookedCard.classList.add('card', 'booked');
+
+                    const image = document.createElement('img');
+                    image.src = room.imageUrl;
+                    bookedCard.appendChild(image);
+
+                    const title = document.createElement('h2');
+                    title.textContent = room.class;
+                    bookedCard.appendChild(title);
+
+                    const availability = document.createElement('p');
+                    availability.textContent = `Availability: ${room.availability}`;
+                    bookedCard.appendChild(availability);
+
+                    const price = document.createElement('p');
+                    price.textContent = `Price: ${room.price}`;
+                    bookedCard.appendChild(price);
+
+                    const desc = document.createElement('p');
+                    desc.textContent = room.description;
+                    bookedCard.appendChild(desc);
+
+                    bookingsContainer.appendChild(bookedCard);
+                });
+            };
+
+            // Initial rendering
+            renderRooms();
+            renderBookings();
+        });
+    </script>
+
+</body>
+
+</html>

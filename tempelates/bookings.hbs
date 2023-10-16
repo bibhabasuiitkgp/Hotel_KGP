@@ -1,0 +1,42 @@
+<!-- bookings.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings</title>
+</head>
+
+<body>
+
+    <h1>Booking Form</h1>
+
+    <form action="/bookings" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address"><br>
+
+        <label for="aadharNumber">Aadhar Number:</label>
+        <input type="text" id="aadharNumber" name="aadharNumber"><br>
+
+        <label for="checkInDate">Check-in Date:</label>
+        <input type="date" id="checkInDate" name="checkInDate"><br>
+
+        <label for="checkOutDate">Check-out Date:</label>
+        <input type="date" id="checkOutDate" name="checkOutDate"><br>
+
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber"><br>
+
+        <label for="roomClass">Class of Room:</label>
+        <input type="text" id="roomClass" name="roomClass"><br>
+
+        <input type="submit" value="Book">
+    </form>
+
+</body>
+
+</html>
