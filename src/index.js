@@ -57,7 +57,7 @@ app.post('/signup', async (req, res) => {
     const data = new LogInCollection({
         name: req.body.name,
         password: req.body.password,
-        rollnumber: req.body.rollnumber,
+        email: req.body.email,
     })
     await data.save()
 
@@ -113,11 +113,16 @@ app.post('/bookings', async (req, res) => {
 
         await bookingData.save();
 
-        res.status(200).send("Booking successful!");
+        // res.status(200).send("Booking successful!");
+        res.status(200).render("hotel", {
+            naming: req.body.name
+        })
     } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");
     }
+
+
 });
 
 
