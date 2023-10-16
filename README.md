@@ -9,3 +9,6 @@ Git clone the url. <br>
 In the terminal of the project root directory use npm install. <br>
 Now in the terminal use 'cd src'. <br>
 then run node index.js , make sure node.js is installed in the system.<br>
+the web application will run in localhost:3009.<br>
+for booking page use '/hotel'<br>
+for booking confirmation page use '/bookings'<br>
