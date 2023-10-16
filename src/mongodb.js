@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://bibhabasucvsc:18022004Basu*@cluster0.vgbwup5.mongodb.net/Guests?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
+require('dotenv').config();
+
+const mongourl = process.env.mongo_url;
+mongoose.connect(mongourl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("connection successful"))
     .catch((err) => console.log("connection not successful"));
 
