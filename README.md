@@ -5,7 +5,7 @@ After selecting any particular room the user is redirected to confirmation page 
 
 HOW TO SETUP
 
-Git clone the url
-In the terminal of the project root directory use npm install
-Now in the terminal use 'cd src'
-then run node index.js , make sure node.js is installed in the system
+Git clone the url. <br>
+In the terminal of the project root directory use npm install. <br>
+Now in the terminal use 'cd src'. <br>
+then run node index.js , make sure node.js is installed in the system.<br>
