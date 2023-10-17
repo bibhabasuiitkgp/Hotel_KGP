@@ -1,0 +1,58 @@
+[
+    {
+        "imageUrl": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG90ZWwlMjByb29tc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "class": "Standard",
+        "availability": "Available Now",
+        "price": "$100",
+        "description": "A cozy standard room with all the essential amenities."
+    },
+    {
+        "imageUrl": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG90ZWwlMjByb29tc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "class": "Suite",
+        "availability": "Available Now",
+        "price": "$200",
+        "description": "A luxurious suite with a breathtaking view and premium amenities."
+    },
+    {
+        "imageUrl": "https://images.unsplash.com/photo-1594560913095-8cf34bab82ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8aG90ZWwlMjByb29tc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "class": "Standard",
+        "availability": "Available Soon",
+        "price": "$90",
+        "description": "A comfortable standard room, perfect for a relaxing stay."
+    },
+    {
+        "imageUrl": "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8aG90ZWwlMjByb29tc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "class": "Deluxe",
+        "availability": "Limited Availability",
+        "price": "$150",
+        "description": "A spacious deluxe room with modern decor and extra amenities."
+    },
+    {
+        "imageUrl": "https://media.istockphoto.com/id/1201397488/photo/hotel-room-with-panoramic-view-of-the-mountains.jpg?s=2048x2048&w=is&k=20&c=fwKa8-VpWeSkA_oYwbw8IUQ6siGsSwNMlp5H6z9zfPU=",
+        "class": "Family Suite",
+        "availability": "Booked",
+        "price": "$250",
+        "description": "A family suite with separate rooms and a cozy common area."
+    },
+    {
+        "imageUrl": "https://images.unsplash.com/photo-1608198399988-341f712c3711?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGhvdGVsJTIwcm9vbXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+        "class": "Budget",
+        "availability": "Available Now",
+        "price": "$70",
+        "description": "An economical choice for those on a budget, with essential amenities."
+    },
+    {
+        "imageUrl": "https://media.istockphoto.com/id/638609520/photo/modern-bedroom-interior.jpg?s=612x612&w=0&k=20&c=GZUC7E4N7mdJWBa9_FnjklD3B9teYxmVQOy6UPTz1s4=",
+        "class": "Executive Suite",
+        "availability": "Available Now",
+        "price": "$180",
+        "description": "An executive suite with a private office space and luxurious furnishings."
+    },
+    {
+        "imageUrl": "https://media.istockphoto.com/id/637953734/photo/hotel-interior-double-bed-bedroom.jpg?s=612x612&w=0&k=20&c=o5tafA4RJtEMXk4DMvhk7IjoFvHl_EW8lQxJj6mhm4c=",
+        "class": "Ocean View",
+        "availability": "Available Now",
+        "price": "$120",
+        "description": "A room with a stunning ocean view and balcony for a relaxing experience."
+    }
+]
