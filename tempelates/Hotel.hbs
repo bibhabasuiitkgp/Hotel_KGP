@@ -229,12 +229,9 @@
             justify-items: center;
         }
 
-        .booked {
-            background-color: #f8d7da;
 
-        }
 
-        .bookings-container {
+        /* .bookings-container {
             margin-top: 20px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -246,7 +243,7 @@
             font-size: 20px;
             margin-bottom: 10px;
             color: black;
-        }
+        } */
 
 
 
@@ -268,6 +265,19 @@
             .bookings-container {
                 grid-template-columns: 1fr;
             }
+        }
+
+        .profile-container {
+            order: 3;
+            /* Displayed on the right side */
+            margin-right: 20px;
+        }
+
+        .profile-container img {
+            width: 40px;
+            height: 40px;
+            border-radius: 30%;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -291,7 +301,14 @@
                     <li><a href="/logout">Logout</a></li>
                 </form>
 
+
+
             </ul>
+
+            <div class="profile-container">
+                <input type="file" id="profileInput" accept="image/*" style="display: none;">
+                <img src="default-profile.jpg" alt="Upload image" id="profileImage" onclick="openProfileInput()">
+            </div>
             <h1 class="logo">Hotel KGP</h1>
         </div>
     </nav>
@@ -377,7 +394,6 @@
 
                 // Update the UI
                 renderRooms();
-                renderBookings();
             };
 
             const renderRooms = () => {
@@ -388,7 +404,7 @@
                 const gridContainer = document.createElement('div');
                 gridContainer.classList.add('grid-container');
 
-                // Append each card to the grid container
+                // Append each card to the grid container 
                 roomsData.forEach((room, index) => {
                     const card = document.createElement('div');
                     card.classList.add('card');
@@ -438,44 +454,8 @@
             };
 
 
-            const renderBookings = () => {
-
-                bookingsContainer.innerHTML = '';
-
-
-                const booked = roomsData.filter(room => room.booked);
-
-
-                booked.forEach(room => {
-                    const bookedCard = document.createElement('div');
-                    bookedCard.classList.add('card', 'booked');
-
-                    const image = document.createElement('img');
-                    image.src = room.imageUrl;
-                    bookedCard.appendChild(image);
-
-                    const title = document.createElement('h2');
-                    title.textContent = room.class;
-                    bookedCard.appendChild(title);
-
-                    const availability = document.createElement('p');
-                    availability.textContent = `Availability: ${room.availability}`;
-                    bookedCard.appendChild(availability);
-
-                    const price = document.createElement('p');
-                    price.textContent = `Price: ${room.price}`;
-                    bookedCard.appendChild(price);
-
-                    const desc = document.createElement('p');
-                    desc.textContent = room.description;
-                    bookedCard.appendChild(desc);
-
-                    bookingsContainer.appendChild(bookedCard);
-                });
-            };
-
             renderRooms();
-            renderBookings();
+
         });
 
 
@@ -511,6 +491,26 @@
             // Trigger a notification for a successful login
             showNotification("Flat 50% off on Deluxe!");
         }
+
+        function openProfileInput() {
+            document.getElementById('profileInput').click();
+        }
+
+        document.getElementById('profileInput').addEventListener('change', function () {
+            const profileImage = document.getElementById('profileImage');
+
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const imgSrc = e.target.result;
+                    profileImage.src = imgSrc;
+                };
+
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+
     </script>
 
 </body>

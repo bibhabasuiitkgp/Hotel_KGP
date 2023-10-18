@@ -46,10 +46,6 @@ app.post('/signup', async (req, res) => {
         return res.status(400).send("Invalid email format");
     }
 
-
-
-
-
     const checking = await LogInCollection.findOne({ name: req.body.name })
 
     try {
@@ -70,9 +66,6 @@ app.post('/signup', async (req, res) => {
         email: req.body.email,
     })
     await data.save()
-
-
-
     res.status(200).render("hotel", {
         naming: req.body.name
     })
@@ -85,7 +78,7 @@ app.post('/login', async (req, res) => {
         const check = await LogInCollection.findOne({ name: req.body.name })
 
         if (check.password === req.body.password) {
-            res.status(200).render("hotel", { naming: `${req.body.name}` })
+            res.status(200).render("hotel")
         }
 
         else {
@@ -116,8 +109,8 @@ app.post('/bookings', async (req, res) => {
             name: req.body.name,
             address: req.body.address,
             aadharNumber: req.body.aadharNumber,
-            checkInDate: new Date(req.body.checkInDate), // Assuming you're sending a string date from the client
-            checkOutDate: new Date(req.body.checkOutDate), // Assuming you're sending a string date from the client
+            checkInDate: new Date(req.body.checkInDate),
+            checkOutDate: new Date(req.body.checkOutDate),
             phoneNumber: req.body.phoneNumber,
             roomClass: req.body.roomClass,
         });
@@ -125,9 +118,7 @@ app.post('/bookings', async (req, res) => {
         await bookingData.save();
 
         // res.status(200).send("Booking successful!");
-        res.status(200).render("hotel", {
-            naming: req.body.name
-        })
+        res.status(200).render("hotel")
     } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");
