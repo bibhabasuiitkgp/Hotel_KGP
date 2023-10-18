@@ -4,6 +4,7 @@ const app = express()
 // const hbs = require("hbs")
 const LogInCollection = require("./mongodb")
 const BookingCollection = require("./booking")
+const nodemailer = require("nodemailer");
 const port = process.env.PORT || 3009
 app.use(express.json())
 
@@ -16,6 +17,15 @@ const tempelatePath = path.join(__dirname, '../tempelates')
 app.set('view engine', 'hbs')
 app.set('views', tempelatePath)
 // app.use(express.static(publicPath))
+
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: "bibhabasu.nssc@gmail.com",
+        pass: "18022004Basu*",
+    },
+});
+
 
 
 // hbs.registerPartials(partialPath)
@@ -38,45 +48,41 @@ app.get('/logout', (req, res) => {
 })
 
 app.post('/signup', async (req, res) => {
-
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailRegex.test(req.body.email)) {
-        return res.status(400).send("Invalid email format");
-    }
-
-
-
-
-
-    const checking = await LogInCollection.findOne({ name: req.body.name })
-
-    try {
-        if (checking.name === req.body.name && checking.password === req.body.password) {
-            res.send("user details already exists")
-        }
-        else {
-            await LogInCollection.insertMany([data])
-        }
-    }
-    catch {
-        res.render("login")
-    }
-
     const data = new LogInCollection({
         name: req.body.name,
         password: req.body.password,
         email: req.body.email,
-    })
-    await data.save()
+    });
 
+    try {
+        // Save user data to the database
+        await data.save();
 
+        // Send authentication email
+        const mailOptions = {
+            from: "bibhabasu.nssc@gmail.com",
+            to: req.body.email,
+            subject: "Account Verification",
+            text: `Thank you for signing up! Your account has been successfully created.`,
+        };
 
-    res.status(200).render("hotel", {
-        naming: req.body.name
-    })
-})
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error("Error sending email:", error);
+            } else {
+                console.log("Email sent:", info.response);
+                // Render success page or redirect to a confirmation page
+                res.status(200).render("hotel", {
+                    naming: req.body.name,
+                });
+            }
+        });
+    } catch (error) {
+        console.error(error);
+        res.render("login");
+    }
+});
+
 
 
 app.post('/login', async (req, res) => {
