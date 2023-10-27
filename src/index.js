@@ -1,7 +1,6 @@
 const express = require("express")
 const path = require("path")
 const app = express()
-// const hbs = require("hbs")
 const LogInCollection = require("./mongodb")
 const BookingCollection = require("./booking")
 const port = process.env.PORT || 3009
@@ -10,15 +9,11 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 const tempelatePath = path.join(__dirname, '../tempelates')
-// const publicPath = path.join(__dirname, '../public')
-// console.log(publicPath);
+
 
 app.set('view engine', 'hbs')
 app.set('views', tempelatePath)
-// app.use(express.static(publicPath))
 
-
-// hbs.registerPartials(partialPath)
 
 
 app.get('/signup', (req, res) => {
@@ -89,8 +84,6 @@ app.post('/login', async (req, res) => {
     }
 
     catch (e) {
-
-        // res.send("wrong details")
         res.render("401")
 
 
@@ -116,8 +109,6 @@ app.post('/bookings', async (req, res) => {
         });
 
         await bookingData.save();
-
-        // res.status(200).send("Booking successful!");
         res.status(200).render("hotel")
     } catch (error) {
         console.error(error);
@@ -126,9 +117,6 @@ app.post('/bookings', async (req, res) => {
 
 
 });
-
-
-
 app.listen(port, () => {
     console.log('port connected');
 })
